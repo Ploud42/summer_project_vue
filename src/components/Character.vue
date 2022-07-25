@@ -1,7 +1,8 @@
 <script>
 import axios from 'axios'
 export default {
-    props:{
+name: 'Character',
+props:{
         id: Number,
         character: Object,
     }
@@ -12,7 +13,7 @@ export default {
   <div class="card mb-3" >
     <div class="row g-0">
       <div class="col-md-3">
-        <img v-if="serie.image" :src= serie.image class="img-fluid rounded-start" alt="...">
+        <img v-if="character.image" :src="'file://C:/xampp/htdocs/summer_project_jdr/public/assets/images/heroesPP/' + character.image" class="img-fluid rounded-start" alt="...">
       </div>
       <div class="col-md-9">
         <div class="card-body">
