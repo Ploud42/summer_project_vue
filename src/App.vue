@@ -19,10 +19,11 @@
 </script>
 
 <template>
-  <div class="container text-center">
-    <h1>Bienvenue sur Little game project</h1>
-    <div>
-      {{$data}}
+  <div class="container px-0">
+    <h1 class="text-center">Bienvenue sur Little game project</h1>
+    <div class="row">
+      <!-- {{$data}} -->
+      <h2>Choisissez votre héro</h2>
       <Character
         v-for="result, index in results"
         :key="index"

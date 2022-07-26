@@ -10,20 +10,30 @@ props:{
 </script>
 
 <template>
-  <div class="card mb-3" >
-    <div class="row g-0">
-      <div class="col-md-3">
-        <img v-if="character.image" :src="'file://C:/xampp/htdocs/summer_project_jdr/public/assets/images/heroesPP/' + character.image" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-9">
-        <div class="card-body">
-          <h5 class="card-title">{{ character.name }}</h5>
+  <div class="col-12 col-md-4 col-lg-4">
+    <div class="card mb-3 border-0 rounded-0 shadow px-0">
+
+      <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="card-img-top bg-dark rounded-0" alt="...">
+      
+
+      <div class="card-body">
+        <div class="card-img-overlay">
+          <h5 class="card-title mt-5"><span class="text-box px-2 py-2">{{ character.name }}</span></h5>
         </div>
+        <p>HP : {{ character.hp }}</p>
+        <p>ATK : {{ character.atk }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <style>
+.card{
+  background:rgb(84, 110, 122);
+  color: white;
+}
 
+.text-box{
+  background: rgb(65, 65, 65);
+}
 </style>
