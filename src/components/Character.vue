@@ -26,7 +26,7 @@ props:{
         </div>
       </div>
       <div class="card-footer text-center border-1">
-        <button class="btn btn-play"><strong>Jouer</strong></button>
+        <button class="btn btn-play px-3"><strong>Jouer</strong></button>
       </div>
     </div>
   </div>
