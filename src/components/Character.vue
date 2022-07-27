@@ -11,7 +11,7 @@ props:{
 
 <template>
   <div class="col-12 col-md-4 col-lg-4">
-    <div class="card mb-3 border-0 rounded-0 shadow px-0">
+    <div class="card h-100 border-0 rounded-0 shadow px-0">
 
       <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="card-img-top bg-dark rounded-0" alt="...">
       
@@ -20,8 +20,13 @@ props:{
         <div class="card-img-overlay">
           <h5 class="card-title mt-5"><span class="text-box px-2 py-2">{{ character.name }}</span></h5>
         </div>
-        <p>HP : {{ character.hp }}</p>
-        <p>ATK : {{ character.atk }}</p>
+        <div class="lh-sm">
+          <p class="mb-0">HP : {{ character.hp }}</p>
+          <p>Attack : {{ character.atk }}</p>
+        </div>
+      </div>
+      <div class="card-footer text-center border-1">
+        <button class="btn btn-play"><strong>Jouer</strong></button>
       </div>
     </div>
   </div>
@@ -35,5 +40,17 @@ props:{
 
 .text-box{
   background: rgb(65, 65, 65);
+}
+
+.card-img-top{
+  object-fit: contain;
+}
+
+.card-footer{
+  border-top: 1px solid rgba(160,160,160,0.2);
+}
+
+.btn-play{
+  background: #ee6e73;
 }
 </style>
