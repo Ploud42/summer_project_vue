@@ -1,11 +1,14 @@
 <script>
 import axios from 'axios'
 export default {
-name: 'Character',
-props:{
-        id: Number,
-        character: Object,
-    }
+  name: 'Character',
+  props:{
+          id: Number,
+          character: Object,
+      },
+  methods: {
+
+  }
 }
 </script>
 
@@ -26,7 +29,7 @@ props:{
         </div>
       </div>
       <div class="card-footer text-center border-1">
-        <button class="btn btn-play px-3"><strong>Jouer</strong></button>
+        <button type="button" class="btn btn-play px-3 fs-3" onclick="$emit('chosen', { character.name })">Play</button>
       </div>
     </div>
   </div>
@@ -50,7 +53,17 @@ props:{
   border-top: 1px solid rgba(160,160,160,0.2);
 }
 
+/* .card-img-overlay{
+  z-index: 1;
+} */
+
 .btn-play{
   background: #ee6e73;
+  /* z-index: 18; */
+  position: relative;
+}
+
+.btn-play:hover{
+  background: #c45b5e;
 }
 </style>

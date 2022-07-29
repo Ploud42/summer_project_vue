@@ -26,6 +26,7 @@
   <div class="container px-0">
     <div v-if = !chosen>
       <!-- {{$data}} -->
+      {{ chosen }}
       <h2 class="text-center">Choisissez votre héro</h2>
       <div class="row g-3">
         <Character
