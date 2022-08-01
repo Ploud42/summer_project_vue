@@ -6,8 +6,15 @@ export default {
           id: Number,
           character: Object,
       },
+  data(){
+    return {
+      message: ''
+    }
+  },
   methods: {
-
+    selectChar() {
+        this.$emit('updateChosen', this.character )
+    }
   }
 }
 </script>
@@ -20,16 +27,17 @@ export default {
       
 
       <div class="card-body">
-        <div class="card-img-overlay">
+       <!--  <div class="card-img-overlay">
           <h5 class="card-title mt-5"><span class="text-box px-2 py-2">{{ character.name }}</span></h5>
-        </div>
+        </div> -->
         <div class="lh-sm">
           <p class="mb-0">HP : {{ character.hp }}</p>
           <p>Attack : {{ character.atk }}</p>
+          <p>{{ message }}</p>
         </div>
       </div>
       <div class="card-footer text-center border-1">
-        <button type="button" class="btn btn-play px-3 fs-3" onclick="$emit('chosen', { character.name })">Play</button>
+        <button type="button" class="btn btn-play px-3 fs-3" v-on:click="selectChar">Play</button>
       </div>
     </div>
   </div>
@@ -47,6 +55,7 @@ export default {
 
 .card-img-top{
   object-fit: contain;
+  
 }
 
 .card-footer{

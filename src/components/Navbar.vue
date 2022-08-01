@@ -12,7 +12,7 @@ props:{
 <template>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="../assets/logoW.png" alt="" width="45" height="45" class="d-inline-block align-text-center">
+            <a class="navbar-brand" href=""><img src="../assets/logoW.png" alt="" width="45" height="45" class="d-inline-block align-text-center">
                 Little Game Project
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
