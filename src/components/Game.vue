@@ -17,10 +17,22 @@ export default {
 </script>
 
 <template>
-    <p>TEST</p>
-    <div class="row bg-dark">
+    
+    <div class="row align-items-end g-bg mb-5">
         <div class="col-4">
+          <div class="row  px-5">
+            <span>
+              <span class="btn fw-bold btn-gp">Attaque</span>
+              <span class="btn fw-bold btn-gp mx-2">Defense</span>
+              <span class="btn fw-bold btn-gp">Special</span>
+            </span>
+          </div>
+          <div class="row">
             <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="img-fluid float-start" :alt="character.name">
+          </div>
+          <div class="row">
+            <span class="fw-bold text-center pe-5 fs-5 mb-3">ATK: {{ character.atk }} HP: {{ character.hp }}</span>
+          </div>
         </div>
         <div class="col-4"></div>
         <div class="col-4">
@@ -30,5 +42,34 @@ export default {
 </template>
 
 <style>
+.g-bg{
+  background-image: url(../assets/background1.jpg) ;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 50em;
+  object-fit: contain;
+}
 
+.img-monster{
+  object-fit: contain;
+  height: 400px;
+}
+
+.btn-gp{
+  background: #ee6e73;
+  border: 1px solid black;
+  color: black;
+}
+
+.btn-gp:hover{
+  background: #c0464a;
+  border: 1px solid black;
+  color: white;
+}
+
+.btn-gp:active{
+  background: white;
+  color: #c0464a;
+  border: 1px solid #c0464a;
+}
 </style>

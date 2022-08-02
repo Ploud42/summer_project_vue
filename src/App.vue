@@ -59,8 +59,5 @@
 </template>
 
 <style>
-.img-monster{
-  object-fit: contain;
-  height: 400px;
-}
+
 </style>
