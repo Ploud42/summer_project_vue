@@ -9,7 +9,8 @@ export default {
   data(){
     return {
       monster:[],
-      message: ''
+      message: '',
+      /* character: null */
     }
   },
   mounted(){
@@ -18,7 +19,12 @@ export default {
       .then(response => (this.monster = response.data))
   },
   methods: {
-
+/*       updateChosen(char) {
+        this.character = char;
+      },
+      resetChosen(){
+        this.character = null;
+      } */
   }
 }
 </script>

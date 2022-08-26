@@ -33,29 +33,7 @@
 </script>
 
 <template>
-  <Navbar/>
-  <div class="container px-0">
-    <!-- <h1>{{ chosen }}</h1> -->
-    <div v-if = !chosen>
-      <!-- {{$data}} -->
-      
-      <h2 class="text-center">Choisissez votre héro</h2>
-      <div class="row g-3">
-        <Character
-          v-for="result, index in results"
-          :key="index"
-          :character="result"
-          v-on:updateChosen="updateChosen"
-        />
-      </div>
-    </div>
-    <div v-else>
-      <Game
-        :character="chosen"
-      />
-      
-    </div>
-  </div>
+  <router-view></router-view>
 </template>
 
 <style>

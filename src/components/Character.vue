@@ -38,6 +38,7 @@ export default {
       </div>
       <div class="card-footer text-center border-1">
         <button type="button" class="btn btn-play px-3 fs-3" v-on:click="selectChar">Play</button>
+        <!-- <router-link to="/game" class="btn btn-play px-3 fs-3" v-on:click="selectChar">Play</router-link> -->
       </div>
     </div>
   </div>
