@@ -5,6 +5,7 @@
   import Game from './Game.vue';
 
   export default {
+    name: 'Home',
     components: {
       Character,
         Navbar,
@@ -35,7 +36,7 @@
 <template>
   <Navbar/>
   <div class="container px-0">
-    <h1>{{ chosen }}</h1>
+    <!-- <h1>{{ chosen }}</h1> -->
     <div v-if = !chosen>
       <!-- {{$data}} -->
       
@@ -51,7 +52,7 @@
     </div>
     <div v-else>
       <Game
-        :character = "chosen"
+        :character="chosen"
       />
       
     </div>

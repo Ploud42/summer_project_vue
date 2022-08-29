@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 export default {
   name: 'Game',
   props:{
@@ -7,18 +8,30 @@ export default {
       },
   data(){
     return {
-      message: ''
+      monster:[],
+      message: '',
+      /* character: null */
     }
   },
+  mounted(){
+    axios
+      .get('http://localhost:8000/api/characters/4')
+      .then(response => (this.monster = response.data))
+  },
   methods: {
-
+/*       updateChosen(char) {
+        this.character = char;
+      },
+      resetChosen(){
+        this.character = null;
+      } */
   }
 }
 </script>
 
 <template>
-    
-    <div class="row align-items-end g-bg mb-5">
+    <!-- <h2>{{monster}}</h2> -->
+    <div class="row align-items-end text-center ms-3 pb-5 g-bg mb-5">
         <div class="col-4">
           <div class="row  px-5">
             <span>
@@ -36,17 +49,18 @@ export default {
         </div>
         <div class="col-4"></div>
         <div class="col-4">
-            <img v-if="character.image" src="http://localhost:8000/assets/images/heroesPP/zombie-a1a847685873295fd373cb622e01b039011ea011.png" class="img-fluid mt-5 me-5 float-end img-monster" alt="monster">
+            <img v-if="monster.image" :src="'http://localhost:8000/assets/images/heroesPP/' + monster.image" class="img-fluid mb-5 me-5 float-end img-monster" alt="monster">
         </div>
     </div>
 </template>
 
 <style>
 .g-bg{
-  background-image: url(../assets/background1.jpg) ;
+  background-image: url(../assets/NagrandBB.png) ;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  height: 50em;
+  height: 720px;
+  width: 1280px;
   object-fit: contain;
 }
 
