@@ -10,7 +10,8 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "vue": "^3.2.37",
-    "vue-axios": "^3.4.1"
+    "vue-axios": "^3.4.1",
+    "vue-router": "^4.1.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.1",
