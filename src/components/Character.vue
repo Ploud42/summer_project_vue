@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <div class="col-12 col-md-4 col-lg-4">
+  <div v-if="character.playable" class="col-12 col-md-4 col-lg-4">
     <div class="card h-100 border-0 rounded-0 shadow px-0">
 
       <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="card-img-top bg-dark rounded-0" alt="...">
@@ -38,7 +38,7 @@ export default {
       </div>
       <div class="card-footer text-center border-1">
         <button type="button" class="btn btn-play px-3 fs-3" v-on:click="selectChar">Play</button>
-        <!-- <router-link to="/game" class="btn btn-play px-3 fs-3" v-on:click="selectChar">Play</router-link> -->
+        <!-- <router-link :to="{ name: 'Game', params: {character: character}}" class="btn btn-play px-3 fs-3">Play</router-link> -->
       </div>
     </div>
   </div>

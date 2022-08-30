@@ -34,7 +34,9 @@
 </script>
 
 <template>
-  <Navbar/>
+  <Navbar
+    v-on:resetChosen="resetChosen"
+  />
   <div class="container px-0">
     <!-- <h1>{{ chosen }}</h1> -->
     <div v-if = !chosen>
