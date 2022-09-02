@@ -12,6 +12,7 @@ export default {
       monster:[],
       message: '',
       stage: 1,
+      maxStage: 2,
       monsterID: 4,
       monsterCurHp: Number,
       heroCurHp: this.character.hp,
@@ -105,8 +106,8 @@ export default {
     <div class="col-4 align-self-center">
       <div v-if="monsterCurHp == 0" class="fw-bold text-center fs-5 animate__animated animate__fadeInRightBig">
         <img src="../assets/youwin.png" class="img-fluid victory" alt="">
-        <button v-if="stage < 2" type="button" class="btn fw-bold btn-gp" v-on:click="nextStage">Next Stage</button>
-      </div> <!-- Victory ! -->
+        <button v-if="stage < maxStage" type="button" class="btn fw-bold btn-gp" v-on:click="nextStage">Next Stage</button> <!-- Victory ! -->
+      </div> 
       <div v-if="heroCurHp == 0" class="animate__animated animate__fadeInRightBig">
         <img src="../assets/GameOver.png" class="img-fluid victory" alt="">
         <router-link to="/" type="button" class="btn fw-bold btn-gp" @click="closeGame">New Game</router-link>
