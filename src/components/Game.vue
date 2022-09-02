@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import 'animate.css';
 export default {
   name: 'Game',
   props:{
@@ -11,56 +12,128 @@ export default {
       monster:[],
       message: '',
       stage: 1,
-      monsterCurHp: Number
+      monsterID: 4,
+      monsterCurHp: Number,
+      heroCurHp: this.character.hp,
+      isDisabled: false,
+      monsterFlash: false,
+      monsterDead: false,
+      heroFlash: false,
+      heroDead: false,
+      /* victory: false,
+      defeat: false, */
     }
   },
   mounted(){
     axios
-      .get('http://localhost:8000/api/characters/5')
+      .get('http://localhost:8000/api/characters/'+this.monsterID)
       .then(response => (this.monster = response.data, this.monsterCurHp = response.data.hp))
   },
   methods: {
+    nextStage(){
+      this.monsterID++;
+      axios
+        .get('http://localhost:8000/api/characters/'+this.monsterID)
+        .then(response => (this.monster = response.data, this.monsterCurHp = response.data.hp))
+        .then(this.monsterDead = false)
+      this.stage++;
+      this.heroCurHp = this.character.hp;
+      this.isDisabled = false;
+    },
+    monstersAction(){
+      this.heroCurHp -= this.monster.atk;
+      if (this.heroCurHp < 0 || this.heroCurHp == 0){
+        this.heroCurHp = 0;
+        this.heroDead = true;
+      }
+      else {
+        this.heroFlash = true;
+        setTimeout(() => {
+          this.heroFlash = false;
+        }, 800)
+        this.isDisabled = false;
+      }
+    },
     attack() {
+      this.isDisabled = true;
       this.monsterCurHp -= this.character.atk;
-      if (this.monsterCurHp < 0)
+      if (this.monsterCurHp < 0 || this.monsterCurHp == 0){
         this.monsterCurHp = 0;
+        this.monsterDead = true;
+      }
+      else {
+        this.monsterFlash = true;
+        setTimeout(() => {
+          this.monsterFlash = false;
+          this.monstersAction();
+        }, 800)
+      }
+    },
+    closeGame() {
+        this.$emit('resetChosen' )
     }
   }
 }
 </script>
 
 <template>
-    <div class="row text-center"><h2>Stage {{stage}}</h2></div>
-    <div class="row align-items-end text-center ms-3 pb-5 g-bg mb-5">
-        <div class="col-4">
-          <div class="row  px-5">
-            <span>
-              <span class="btn fw-bold btn-gp" v-on:click="attack" >Attaque ({{character.atk}})</span>
-              <span class="btn fw-bold btn-gp mx-2">Defense</span>
-              <span class="btn fw-bold btn-gp">Special</span>
-            </span>
+  <div class="row text-center"><h2>Stage {{stage}}</h2></div>
+  <div class="row align-items-end text-center ms-3 pb-5 g-bg mb-5">
+    <div class="col-4">
+      <div :class="{'animate__animated animate__fadeOut': heroDead }">
+        <div class="row">
+          <div v-if="heroFlash" class="animate__animated animate__fadeOutUp">
+            <span class="fw-bold text-danger text-center fs-5">- {{ monster.atk }}</span>
           </div>
-          <div class="row">
-            <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="img-fluid float-start" :alt="character.name">
-          </div>
-          <div class="row">
-            <span class="fw-bold text-center pe-5 fs-5 mb-3">ATK: {{ character.atk }} HP: {{ character.hp }}</span>
+          <span>
+            <span class="btn fw-bold btn-gp" v-on:click="attack" :disabled="isDisabled">Attaque ({{character.atk}})</span>
+            <span class="btn fw-bold btn-gp mx-2" :disabled="isDisabled">Defense</span>
+            <span class="btn fw-bold btn-gp" :disabled="isDisabled">Special</span>
+          </span>
+        </div>
+        <div class="row">
+          <div :class="{'animate__animated animate__flash': heroFlash}">
+            <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="img-fluid img-hero ms-4" :alt="character.name">
           </div>
         </div>
-        <div class="col-4"></div>
-        <div class="col-4">
-          <div class="row">
-            <span class="fw-bold text-center pe-5 fs-5 mb-3">ATK: {{ monster.atk }}</span>
+        <div class="row">
+          <span class=""><progress :value=" heroCurHp " :max=" character.hp " class="heroHpBar">test</progress></span>
+          <span class="fw-bold text-center fs-5">HP: {{ heroCurHp }} / {{ character.hp }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 align-self-center">
+      <div v-if="monsterCurHp == 0" class="fw-bold text-center fs-5 animate__animated animate__fadeInRightBig">
+        <img src="../assets/youwin.png" class="img-fluid victory" alt="">
+        <button v-if="stage < 2" type="button" class="btn fw-bold btn-gp" v-on:click="nextStage">Next Stage</button>
+      </div> <!-- Victory ! -->
+      <div v-if="heroCurHp == 0" class="animate__animated animate__fadeInRightBig">
+        <img src="../assets/GameOver.png" class="img-fluid victory" alt="">
+        <router-link to="/" type="button" class="btn fw-bold btn-gp" @click="closeGame">New Game</router-link>
+      </div>
+    </div>
+    <div class="col-4">
+      <div :class="{'animate__animated animate__fadeOut': monsterDead }">
+        <div class="row">
+          <div v-if="monsterFlash" class="animate__animated animate__fadeOutUp">
+            <span class="fw-bold text-danger text-center pe-5 fs-5 mb-3">- {{ character.atk }}</span>
           </div>
-          <div class="row">
+          <span  class="fw-bold text-center pe-5 fs-5 mb-3">{{ monster.atk }}</span>
+        </div>
+        <div class="row">
+          <div :class="{'animate__animated animate__flash': monsterFlash}">
             <img v-if="monster.image" :src="'http://localhost:8000/assets/images/heroesPP/' + monster.image" class="img-fluid img-monster" alt="monster">
           </div>
-          <div class="row">
-            <span class="pe-5"><progress :value=" monsterCurHp " :max=" monster.hp "></progress></span>
-          </div>
-          <div class="row"><span class="fw-bold text-center pe-5 fs-5">HP : {{monsterCurHp}} / {{ monster.hp }} </span></div>
         </div>
+        <div class="row">
+          <span class=""><progress :value="monsterCurHp" :max="monster.hp" data-label="HP : {{monsterCurHp}} / {{monster.hp}}"></progress></span>
+        </div>
+        <div class="row">
+          <span class="fw-bold text-center fs-5">HP : {{monsterCurHp}} / {{ monster.hp }} </span>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <style>
@@ -71,6 +144,15 @@ export default {
   height: 720px;
   width: 1280px;
   object-fit: contain;
+}
+
+.victory{
+  object-fit:cover;
+}
+
+.img-hero{
+  object-fit: contain;
+  height: 350px;
 }
 
 .img-monster{
@@ -92,29 +174,49 @@ export default {
 
 .btn-gp:active{
   background: white;
-  color: #c0464a;
+  color: #c04347;
   border: 1px solid #c0464a;
 }
 
 progress {
   height: 1.5em;
   width: 15em;
-  background: crimson;
-}
-
-progress {
-  color: lightblue;
+  background: rgb(255, 255, 255);
+  color: rgb(65, 131, 153);
 }
 
 progress::-moz-progress-bar {
-  background: lightcolor;
+  background: rgb(226, 58, 58);
 }
 
 progress::-webkit-progress-value {
-  background: rgb(238, 59, 59);
+  background: rgb(226, 58, 58);
 }
 
 progress::-webkit-progress-bar {
   background: white;
+}
+
+.heroHpBar {
+  height: 1.5em;
+  width: 15em;
+  background: rgb(255, 255, 255);
+  color: rgb(65, 131, 153);
+}
+
+.heroHpBar::-moz-progress-bar {
+  background: rgb(9, 165, 255);
+}
+
+.heroHpBar::-webkit-progress-value {
+  background: rgb(9, 165, 255);
+}
+
+.heroHpBar::-webkit-progress-bar {
+  background: white;
+}
+
+.animate__animated.animate__flash {
+  --animate-duration: 0.7s;
 }
 </style>

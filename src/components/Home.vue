@@ -55,6 +55,7 @@
     <div v-else>
       <Game
         :character="chosen"
+        v-on:resetChosen="resetChosen"
       />
       
     </div>
