@@ -13,21 +13,48 @@
     },
     data(){
         return {
-          results:[],
-          chosen: null
+          result: [],
+          email: "",
+          password: "",
+          errorMessage: ""
         }
     },
     mounted(){
-      axios
-        .get('http://localhost:8000/api/characters')
-        .then(response => (this.results = response.data['hydra:member']))
+
     },
     methods: {
-      updateChosen(char) {
-        this.chosen = char;
-      },
-      resetChosen(){
-        this.chosen = null;
+      async login() {
+        this.result = null;
+        this.errorMessage = "";
+        await axios
+          .post('http://localhost:8000/authentication_token',
+          {
+            email: this.email,
+            password: this.password
+          },
+          {
+
+          })
+          .then(response => (
+            this.result = response.data,
+            console.log(response.status)
+            )
+          )
+          .catch( (e) => {
+              this.errorMessage = "Identifiants invalides";
+              console.log(e.message);
+            }
+          )
+        console.log(this.result);
+        if (this.result){
+          console.log(this.result);
+          let d = new Date();
+          d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
+          let expires = "expires=" + d.toUTCString();
+          document.cookie =
+            "Token=" + this.result.token + ";" + expires + ";";
+          this.$router.push("/");
+        }
       }
     }
   }
@@ -35,21 +62,20 @@
 
 <template>
   <Navbar/>
-<form method="post" action="http://localhost:8000/authentication_token" class="w-50 mx-auto">
+<form @submit.prevent="login" class="w-50 mx-auto text-center">
+    <div>{{result}}</div>
 
     <h1 class="h3 mb-3 font-weight-normal">Veuillez vous identifier</h1>
     <label for="inputEmail">Email</label>
-    <input type="email" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <input type="email" name="email" id="inputEmail" v-model="email" class="form-control w-75 mx-auto" autocomplete="email" required autofocus>
     <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    <input type="password" name="password" id="inputPassword" v-model="password" class="form-control w-75 mx-auto" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-
-    <button class="btn btn-lg btn-primary mt-3" type="submit">
-        Se connecter
-    </button>
+    <div class="text-center text-danger">{{errorMessage}}</div>
+    <button class="btn btn-lg btn-primary mt-3" type="submit">Se connecter</button>
 </form>
 </template>
 

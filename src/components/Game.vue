@@ -12,11 +12,11 @@ export default {
       monster:[],
       message: '',
       stage: 1,
-      maxStage: 2,
-      monsterID: 4,
+      maxStage: 3,
+      monsterID: 5,
       monsterCurHp: Number,
       heroCurHp: this.character.hp,
-      isDisabled: false,
+      isDisabled: null,
       monsterFlash: false,
       monsterDead: false,
       heroFlash: false,
@@ -51,13 +51,14 @@ export default {
         this.heroFlash = true;
         setTimeout(() => {
           this.heroFlash = false;
+          this.isDisabled = false;
         }, 800)
-        this.isDisabled = false;
       }
     },
     attack() {
-      this.isDisabled = true;
+      
       this.monsterCurHp -= this.character.atk;
+      this.isDisabled = true;
       if (this.monsterCurHp < 0 || this.monsterCurHp == 0){
         this.monsterCurHp = 0;
         this.monsterDead = true;
@@ -84,10 +85,10 @@ export default {
       <div :class="{'animate__animated animate__fadeOut': heroDead }">
         <div class="row">
           <div v-if="heroFlash" class="animate__animated animate__fadeOutUp">
-            <span class="fw-bold text-danger text-center fs-5">- {{ monster.atk }}</span>
+            <span class="fw-bold text-danger text-center fs-3">- {{ monster.atk }}</span>
           </div>
-          <span>
-            <span class="btn fw-bold btn-gp" v-on:click="attack" :disabled="isDisabled">Attaque ({{character.atk}})</span>
+          <span v-show="!isDisabled">
+            <span class="btn fw-bold btn-gp"  v-on:click="attack" >Attaque ({{character.atk}})</span>
             <span class="btn fw-bold btn-gp mx-2" :disabled="isDisabled">Defense</span>
             <span class="btn fw-bold btn-gp" :disabled="isDisabled">Special</span>
           </span>
@@ -98,8 +99,8 @@ export default {
           </div>
         </div>
         <div class="row">
-          <span class=""><progress :value=" heroCurHp " :max=" character.hp " class="heroHpBar">test</progress></span>
-          <span class="fw-bold text-center fs-5">HP: {{ heroCurHp }} / {{ character.hp }}</span>
+          <span class=""><progress :value="heroCurHp" :max="character.hp" class="heroHpBar"></progress></span>
+          <span class="fw-bold text-center fs-5 hp-info">HP: {{ heroCurHp }} / {{ character.hp }}</span>
         </div>
       </div>
     </div>
@@ -117,7 +118,7 @@ export default {
       <div :class="{'animate__animated animate__fadeOut': monsterDead }">
         <div class="row">
           <div v-if="monsterFlash" class="animate__animated animate__fadeOutUp">
-            <span class="fw-bold text-danger text-center pe-5 fs-5 mb-3">- {{ character.atk }}</span>
+            <span class="fw-bold text-danger text-center pe-5 fs-3 mb-3">- {{ character.atk }}</span>
           </div>
           <span  class="fw-bold text-center pe-5 fs-5 mb-3">{{ monster.atk }}</span>
         </div>
@@ -127,10 +128,8 @@ export default {
           </div>
         </div>
         <div class="row">
-          <span class=""><progress :value="monsterCurHp" :max="monster.hp" data-label="HP : {{monsterCurHp}} / {{monster.hp}}"></progress></span>
-        </div>
-        <div class="row">
-          <span class="fw-bold text-center fs-5">HP : {{monsterCurHp}} / {{ monster.hp }} </span>
+          <span class=""><progress :value="monsterCurHp" :max="monster.hp"></progress></span>
+          <span class="fw-bold text-center fs-5 hp-info">HP : {{monsterCurHp}} / {{ monster.hp }} </span>
         </div>
       </div>
     </div>
@@ -145,6 +144,12 @@ export default {
   height: 720px;
   width: 1280px;
   object-fit: contain;
+}
+
+.hp-info{
+  position: relative;
+  bottom: 1.7em;
+  right: 0.4em;
 }
 
 .victory{

@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="character.playable" class="col-12 col-md-4 col-lg-4">
+  <div v-if="character.playable" class="col-12 col-md-6 col-xl-4">
     <div class="card h-100 border-0 rounded-0 shadow px-0">
 
       <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="card-img-top bg-dark rounded-0" alt="...">
