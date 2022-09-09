@@ -13,7 +13,7 @@ export default {
       message: '',
       stage: 1,
       maxStage: 3,
-      monsterID: 5,
+      monsterID: 4,
       monsterCurHp: Number,
       heroCurHp: this.character.hp,
       isDisabled: null,

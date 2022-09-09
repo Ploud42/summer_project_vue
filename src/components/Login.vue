@@ -14,13 +14,16 @@
     data(){
         return {
           result: [],
+          token: [],
           email: "",
           password: "",
           errorMessage: ""
         }
     },
     mounted(){
-
+      if (this.$cookies.isKey("Token")){
+        this.token = jwt_decode(this.$cookies.get("Token"));
+      }
     },
     methods: {
       async login() {
@@ -55,13 +58,21 @@
             "Token=" + this.result.token + ";" + expires + ";";
           this.$router.push("/");
         }
+      },
+      logout(){
+        if (this.$cookies.isKey("Token"))
+          this.$cookies.remove("Token");
+        this.token = [];
       }
     }
   }
 </script>
 
 <template>
-  <Navbar/>
+  <Navbar
+    v-on:logout="logout"
+    :token="token"
+  />
 <form @submit.prevent="login" class="w-50 mx-auto text-center">
     <div>{{result}}</div>
 

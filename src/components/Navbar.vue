@@ -5,10 +5,22 @@ export default{
     props:{
         id: Number,
         navbar: Object,
+        token: Object
+    },
+    data(){
+        return {
+            
+        }
+    },
+    mounted(){
+
     },
     methods: {
     closeGame() {
-        this.$emit('resetChosen' )
+        this.$emit('resetChosen')
+    },
+    logout() {
+        this.$emit('logout')
     }
   }
 }
@@ -24,30 +36,18 @@ export default{
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                <router-link to="/" @click="closeGame" class="nav-link">Home</router-link>
-                </li>
-                <li class="nav-item">
-                <router-link to="/login" class="nav-link">Se connecter</router-link>
-                </li>
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <router-link to="/" @click="closeGame" class="nav-link">Home</router-link>
+                    </li>
                 </ul>
-                </li>
-        <!--         <li>
-                    <h1>Bienvenue sur Little Game Project</h1>
-                </li> -->
-            </ul>
-            <form class="d-flex">
-            </form>
+                <div v-if="token.pseudo">
+                   <span class="nav-link me-5"> Bonjour, {{token.pseudo}}</span>
+                   <router-link to="/" @click="logout" class="nav-link me-5">Se deconnecter</router-link>
+                </div>
+                <div v-else>
+                    <router-link to="/login" class="nav-link me-5">Se connecter</router-link>
+                </div>
             </div>
         </div>
     </nav>

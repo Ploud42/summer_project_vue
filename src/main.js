@@ -4,6 +4,7 @@ import App from './App.vue'
 import * as VueRouter from 'vue-router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueCookies from 'vue-cookies';
 import Home from './components/Home.vue'
 import Login from './components/Login.vue'
 import About from './components/About.vue'
@@ -39,6 +40,7 @@ routes: [
 
 const app = createApp(App)
 app.use(VueAxios, axios)
+app.use(VueCookies)
 app.use(router).mount('#app')
 /* app.mount('app') */
 
