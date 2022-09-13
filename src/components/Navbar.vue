@@ -41,12 +41,19 @@ export default{
                         <router-link to="/" @click="closeGame" class="nav-link">Home</router-link>
                     </li>
                 </ul>
-                <div v-if="token.pseudo">
-                   <span class="nav-link me-5"> Bonjour, {{token.pseudo}}</span>
-                   <router-link to="/" @click="logout" class="nav-link me-5">Se deconnecter</router-link>
+                <div v-if="token.pseudo" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle me-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         Bonjour, {{token.pseudo}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a v-if="token.roles.includes('ROLE_ADMIN')" class="dropdown-item" href="http://localhost:8000/admin">Admin</a></li>
+                        <li><a class="dropdown-item" href="#">Vos scores</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><router-link to="/" class="dropdown-item" @click="logout">Se déconnecter</router-link></li>
+                    </ul>
                 </div>
                 <div v-else>
-                    <router-link to="/login" class="nav-link me-5">Se connecter</router-link>
+                    <router-link to="/login" class="me-5">Se connecter</router-link>
                 </div>
             </div>
         </div>

@@ -63,7 +63,8 @@
         if (this.$cookies.isKey("Token"))
           this.$cookies.remove("Token");
         this.token = [];
-      }
+      },
+
     }
   }
 </script>
@@ -74,9 +75,7 @@
     :token="token"
   />
 <form @submit.prevent="login" class="w-50 mx-auto text-center">
-    <div>{{result}}</div>
-
-    <h1 class="h3 mb-3 font-weight-normal">Veuillez vous identifier</h1>
+    <h1 class="h3 mt-3 mb-3 font-weight-normal">Veuillez vous identifier</h1>
     <label for="inputEmail">Email</label>
     <input type="email" name="email" id="inputEmail" v-model="email" class="form-control w-75 mx-auto" autocomplete="email" required autofocus>
     <label for="inputPassword">Mot de passe</label>
@@ -87,6 +86,7 @@
     >
     <div class="text-center text-danger">{{errorMessage}}</div>
     <button class="btn btn-lg btn-primary mt-3" type="submit">Se connecter</button>
+    <p class="mt-3">Pas encore inscrit? Cliquez <a href="http://localhost:8000/register">ici</a></p>
 </form>
 </template>
 

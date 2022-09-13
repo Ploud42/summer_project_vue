@@ -6,6 +6,7 @@ export default {
   props:{
           id: Number,
           character: Object,
+          token: Object
       },
   data(){
     return {
@@ -13,7 +14,7 @@ export default {
       message: '',
       stage: 1,
       maxStage: 3,
-      monsterID: 4,
+      monsterID: 5,
       monsterCurHp: Number,
       heroCurHp: this.character.hp,
       isDisabled: null,
@@ -73,6 +74,27 @@ export default {
     },
     closeGame() {
         this.$emit('resetChosen' )
+    },
+    savescore(){
+      axios
+        .post('http://localhost:8000/runs',
+        {
+          email: this.email,
+          password: this.password
+        },
+        {
+
+        })
+        .then(response => (
+          this.result = response.data,
+          console.log(response.status)
+          )
+        )
+        .catch( (e) => {
+            this.errorMessage = "Identifiants invalides";
+            console.log(e.message);
+          }
+        )
     }
   }
 }

@@ -50,7 +50,7 @@
     :token="token"
   />
   <div class="container px-0">
-    <!-- <h1>{{ chosen }}</h1> -->
+    <!-- <h1>{{ token }}</h1> -->
     <div v-if = !chosen>
       <!-- {{$data}} -->
       <h2 class="text-center">Choisissez votre héro</h2>
@@ -67,6 +67,7 @@
       <Game
         :character="chosen"
         v-on:resetChosen="resetChosen"
+        :token="token"
       />
       
     </div>
