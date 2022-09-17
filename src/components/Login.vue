@@ -1,15 +1,12 @@
 <script>
   import axios from 'axios';
-  import Character from './Character.vue';
   import Navbar from './Navbar.vue';
-  import Game from './Game.vue';
+  import jwt_decode from 'jwt-decode';
 
   export default {
     name: 'Login',
     components: {
-      Character,
         Navbar,
-        Game,
     },
     data(){
         return {

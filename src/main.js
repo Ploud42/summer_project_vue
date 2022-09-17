@@ -1,14 +1,15 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-import { createApp } from 'vue'
-import App from './App.vue'
-import * as VueRouter from 'vue-router'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { createApp } from 'vue';
+import App from './App.vue';
+import * as VueRouter from 'vue-router';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import VueCookies from 'vue-cookies';
-import Home from './components/Home.vue'
-import Login from './components/Login.vue'
-import About from './components/About.vue'
-import Game from './components/Game.vue'
+import Home from './components/Home.vue';
+import Login from './components/Login.vue';
+import About from './components/About.vue';
+import Game from './components/Game.vue';
+import Score from './components/Score.vue';
 
 const router = VueRouter.createRouter({
 history: VueRouter.createWebHistory(),
@@ -34,6 +35,11 @@ routes: [
         name: 'Game',
         component: Game,
         props: true
+    },
+    {
+        path: '/score',
+        name: 'Score',
+        component: Score
     }
   ]
 })
