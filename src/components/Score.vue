@@ -1,12 +1,14 @@
 <script>
     import axios from 'axios';
     import Navbar from './Navbar.vue';
+    import Run from './Run.vue';
     import jwt_decode from 'jwt-decode';
 
     export default {
         name: 'Score',
         components: {
             Navbar,
+            Run
         },
         data(){
             return {
@@ -40,16 +42,21 @@
 </script>
 
 <template>
-  <Navbar
-    v-on:logout="logout"
-    :token="token"
-  />
-  <!-- {{token}} -->
-  {{runs}}
-  <p>Test</p>
-
+    <Navbar
+        v-on:logout="logout"
+        :token="token"
+    />
+    <div class="container text-center px-0">
+        <!-- {{token}} -->
+        {{runs}}
+        <h1>Work in progress</h1>
+        <Run
+          v-for="run, index in runs"
+          :key="index"
+          :run="run"
+        />
+    </div>
 </template>
 
 <style>
-
 </style>

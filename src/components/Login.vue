@@ -49,7 +49,8 @@
         if (this.result){
           console.log(this.result);
           let d = new Date();
-          d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000);
+          d.setTime(d.getTime() + 1 * 2 * 60 * 60 * 1000);
+          console.log(d);
           let expires = "expires=" + d.toUTCString();
           document.cookie =
             "Token=" + this.result.token + ";" + expires + ";";

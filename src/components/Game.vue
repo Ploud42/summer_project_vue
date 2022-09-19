@@ -16,8 +16,8 @@ export default {
       loading:true,
       message: '',
       stage: 1,
-      maxStage: 2,
-      monsterID: 4,
+      maxStage: 3,
+      monsterID: 5,
       monsterCurHp: -1,
       heroCurHp: this.character.hp,
       isDisabled: null,
@@ -171,7 +171,7 @@ export default {
               <img v-if="monster.image" :src="'http://localhost:8000/assets/images/heroesPP/' + monster.image" class="img-fluid img-monster" alt="monster">
             </div>
           </div>
-          <div class="row">
+          <div v-if="monsterCurHp >= 0" class="row">
             <span class=""><progress :value="monsterCurHp" :max="monster.hp"></progress></span>
             <span class="fw-bold text-center fs-5 hp-info">{{monsterCurHp}} / {{ monster.hp }} </span>
           </div>
