@@ -86,7 +86,8 @@ export default {
     },
     getCurrentDate(){
       const current = new Date();
-      const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
+      const month = current.getMonth() + 1;
+      const date = `${current.getFullYear()}-${month.toLocaleString("default", {month: "long"})}-${current.getDate()}`;
       return date;
     },
     saveScore(){
@@ -183,7 +184,7 @@ export default {
 
 <style>
 .g-bg{
-  background-image: url(../assets/NagrandBB.png) ;
+  background-image: url(../assets/background1.jpg) ;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: 720px;

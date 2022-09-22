@@ -1,36 +1,57 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'Run',
-  props:{
-          id: Number,
-          run: Object,
-      },
-  data(){
-    return {
-      message: ''
+    name: 'Run',
+    props:{
+            id: Number,
+            run: Object,
+    },
+    data(){
+        return {
+        message: '',
+        character:[],
+        runDate:"",
+        loading: true
+        }
+    },
+    mounted(){
+    if (!this.$cookies.get("Token")){
+    this.$emit('resetChosen');
     }
-  },
-  methods: {
+    axios
+    .get('http://localhost:8000' + this.run.charac)
+    .then(response => (this.character = response.data))
+    .finally(this.loading = false)
+    
+    const tempDate = new Date(this.run.date);
 
-  }
+    this.runDate = `${tempDate.getDate()}-${tempDate.getMonth() + 1}-${tempDate.getFullYear()}`;
+    },
+    methods: {
+
+    }
 }
 </script>
 
 <template>
-    <div class="card mb-3">
-        <div class="row g-0">
-                <div class="col-md-4">
-                <img v-if="run.charac.image" :src="'http://localhost:8000/assets/images/heroesPP/' + run.charac.image" class="card-img-top bg-dark rounded-0" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                            <h1>{{ run.charac.name }}</h1>
-                            <p class="mb-0"> Le {{ run.date }}</p>
-                            <p> Stage {{ run.score }}</p>
-                            <p>{{ message }}</p>
+    <div v-if="loading" class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div v-else>
+        <div class="card mb-3">
+            <div class="row g-0">
+                    <div class="col-md-4">
+                    <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="card-img-top  rounded-0" alt="...">
                     </div>
-                </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                                <h1>{{ character.name }}</h1>
+                                <p class="mb-0 fs-4"> Le {{runDate}}</p>
+                                <p class="fs-4"> Stage {{ run.score }}</p>
+                                <p>{{ message }}</p>
+                        </div>
+                    </div>
+            </div>
         </div>
     </div>
 </template>
