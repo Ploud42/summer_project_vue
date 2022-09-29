@@ -82,12 +82,13 @@ export default {
       }
     },
     closeGame() {
+        this.saveScore();
         this.$emit('resetChosen');
     },
     getCurrentDate(){
       const current = new Date();
-      const month = current.getMonth() + 1;
-      const date = `${current.getFullYear()}-${month.toLocaleString("default", {month: "long"})}-${current.getDate()}`;
+
+      const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
       return date;
     },
     saveScore(){
@@ -119,7 +120,7 @@ export default {
 </script>
 
 <template>
-  <button type="button" class="btn fw-bold btn-gp" v-on:click="saveScore">Test saveScore</button>
+  <!-- <button type="button" class="btn fw-bold btn-gp" v-on:click="saveScore">Test saveScore</button> -->
   <div class="row text-center"><h2>Stage {{stage}}</h2></div>
   <div class="row align-items-end text-center ms-3 pb-5 g-bg mb-5">
     <div class="col-4">
@@ -147,12 +148,13 @@ export default {
     </div>
     <div class="col-4 align-self-center">
       <div v-if="monsterCurHp == 0" class="fw-bold text-center fs-5 animate__animated animate__fadeInRightBig">
-        <img src="../assets/youwin.png" class="img-fluid endOfFight" alt="">
-        <button v-if="stage < maxStage" type="button" class="btn fw-bold btn-gp" v-on:click="nextStage">Next Stage</button> <!-- Victory ! -->
+        <img src="../assets/youwin.png" class="img-fluid endOfFight" alt=""> <!-- Victory ! -->
+        <button v-if="stage < maxStage" type="button" class="btn fw-bold btn-gp" v-on:click="nextStage">Next Stage</button> 
+        <router-link v-else to="/" type="button" class="btn fw-bold btn-gp" @click="closeGame">New Game</router-link>
       </div> 
       <div v-if="heroCurHp == 0" class="animate__animated animate__fadeInRightBig">
-        <img src="../assets/GameOver.png" class="img-fluid endOfFight" alt="">
-        <router-link to="/" type="button" class="btn fw-bold btn-gp" @click="closeGame">New Game</router-link> <!-- Defeat -->
+        <img src="../assets/GameOver.png" class="img-fluid endOfFight" alt="">  <!-- Defeat -->
+        <router-link to="/" type="button" class="btn fw-bold btn-gp" @click="closeGame">New Game</router-link>
       </div>
     </div>
     <div class="col-4 text-center">

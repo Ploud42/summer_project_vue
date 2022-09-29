@@ -48,13 +48,18 @@
     />
     <div class="container text-center px-0">
         <!-- {{token}} -->
-        {{runs}}
-        <h1>Work in progress</h1>
-        <Run
-          v-for="run, index in runs"
-          :key="index"
-          :run="run"
-        />
+        <!-- {{runs}} -->
+        <h1>Vos scores</h1>
+        <div v-if="runs.length > 0">
+            <Run
+            v-for="run, index in runs"
+            :key="index"
+            :run="run"
+            />
+        </div>
+        <div v-else>
+            <span>Vous n'avez pas encore de score enregistré</span>
+        </div>
     </div>
 </template>
 
