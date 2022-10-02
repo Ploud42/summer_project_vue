@@ -8,7 +8,7 @@ export default {
       },
   data(){
     return {
-      message: ''
+      
     }
   },
   methods: {
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="character.playable" class="col-12 col-md-6 col-xl-4">
+  <div v-if="character.playable" class="col-12 col-md-6 col-xl-4 mx-auto">
     <div class="card h-100 border-0 rounded-0 shadow px-0">
 
       <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="card-img-top bg-dark rounded-0" alt="...">
@@ -33,7 +33,6 @@ export default {
         <div class="lh-sm">
           <p class="mb-0">HP : {{ character.hp }}</p>
           <p>Attack : {{ character.atk }}</p>
-          <p>{{ message }}</p>
         </div>
       </div>
       <div class="card-footer text-center border-1">
@@ -63,14 +62,8 @@ export default {
   border-top: 1px solid rgba(160,160,160,0.2);
 }
 
-/* .card-img-overlay{
-  z-index: 1;
-} */
-
 .btn-play{
   background: #ee6e73;
-  /* z-index: 18; */
-  position: relative;
 }
 
 .btn-play:hover{

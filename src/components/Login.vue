@@ -45,12 +45,9 @@
               console.log(e.message);
             }
           )
-        console.log(this.result);
         if (this.result){
-          console.log(this.result);
           let d = new Date();
           d.setTime(d.getTime() + 1 * 2 * 60 * 60 * 1000);
-          console.log(d);
           let expires = "expires=" + d.toUTCString();
           document.cookie =
             "Token=" + this.result.token + ";" + expires + ";";
@@ -78,10 +75,6 @@
     <input type="email" name="email" id="inputEmail" v-model="email" class="form-control w-75 mx-auto" autocomplete="email" required autofocus>
     <label for="inputPassword">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" v-model="password" class="form-control w-75 mx-auto" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
     <div class="text-center text-danger">{{errorMessage}}</div>
     <button class="btn btn-lg btn-primary mt-3" type="submit">Se connecter</button>
     <p class="mt-3">Pas encore inscrit? Cliquez <a href="http://localhost:8000/register">ici</a></p>

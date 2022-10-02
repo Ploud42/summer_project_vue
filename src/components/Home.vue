@@ -9,14 +9,15 @@
     name: 'Home',
     components: {
       Character,
-        Navbar,
-        Game,
+      Navbar,
+      Game,
     },
     data(){
         return {
           results:[],
           token:[],
-          chosen: null
+          chosen: null,
+          message:""
         }
     },
     mounted(){
@@ -38,6 +39,13 @@
         if (this.$cookies.isKey("Token"))
           this.$cookies.remove("Token");
         this.token = [];
+      },
+      errorMessage(errMessage){
+        this.message = errMessage;
+        setTimeout(() => {
+          this.message = "";
+        }, 2500)
+        
       }
     }
   }
@@ -49,11 +57,11 @@
     v-on:logout="logout"
     :token="token"
   />
-  <div class="container px-0">
-    <!-- <h1>{{ token }}</h1> -->
+  <div class="container">
     <div v-if = !chosen>
       <!-- {{$data}} -->
-      <h2 class="text-center">Choisissez votre héro</h2>
+      <h1 class="text-center">Choisissez votre héro</h1>
+      <div v-if="message" class="row text-center"><span class="alert alert-info mx-auto">{{message}}</span></div>
       <div class="row g-3">
         <Character
           v-for="result, index in results"
@@ -67,9 +75,9 @@
       <Game
         :character="chosen"
         v-on:resetChosen="resetChosen"
+        v-on:errorMessage="errorMessage"
         :token="token"
       />
-      
     </div>
   </div>
 </template>

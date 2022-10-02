@@ -3,7 +3,7 @@ import axios from 'axios';
 import 'animate.css';
 export default {
   name: 'Game',
-  emits: ["resetChosen"],
+  emits: ["resetChosen", "errorMessage"],
   props:{
           id: Number,
           character: Object,
@@ -17,7 +17,7 @@ export default {
       message: '',
       stage: 1,
       maxStage: 3,
-      monsterID: 5,
+      monsterID: 4,
       monsterCurHp: -1,
       heroCurHp: this.character.hp,
       isDisabled: null,
@@ -32,6 +32,7 @@ export default {
   mounted(){
     if (!this.$cookies.get("Token")){
       this.$emit('resetChosen');
+      this.$emit('errorMessage', "Veuillez vous connecter svp");
     }
     axios
       .get('http://localhost:8000/api/characters/'+this.monsterID)
@@ -121,8 +122,8 @@ export default {
 
 <template>
   <!-- <button type="button" class="btn fw-bold btn-gp" v-on:click="saveScore">Test saveScore</button> -->
-  <div class="row text-center"><h2>Stage {{stage}}</h2></div>
-  <div class="row align-items-end text-center ms-3 pb-5 g-bg mb-5">
+  <div class="row text-center"><h1>Stage {{stage}}</h1></div>
+  <div class="row align-items-end text-center ms-3 pb-5 g-bg mx-auto mb-5">
     <div class="col-4">
       <div :class="{'animate__animated animate__fadeOut': heroDead }">
         <div class="row">
@@ -192,6 +193,17 @@ export default {
   height: 720px;
   width: 1280px;
   object-fit: contain;
+}
+
+@media screen and (max-width: 900px) {
+  .g-bg{
+    background-image: url(../assets/background1.jpg) ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 450px;
+    width: 800px;
+    object-fit: contain;
+  }
 }
 
 .hp-info{
