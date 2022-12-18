@@ -22,7 +22,7 @@
     },
     mounted(){
       axios
-        .get('http://localhost:8000/api/characters')
+        .get('https://daccodac.fr/api/characters')
         .then(response => (this.results = response.data['hydra:member']))
       if (this.$cookies.isKey("Token")){
         this.token = jwt_decode(this.$cookies.get("Token"));

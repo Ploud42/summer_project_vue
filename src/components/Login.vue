@@ -27,7 +27,7 @@
         this.result = null;
         this.errorMessage = "";
         await axios
-          .post('http://localhost:8000/authentication_token',
+          .post('https://daccodac.fr/authentication_token',
           {
             email: this.email,
             password: this.password
@@ -77,7 +77,7 @@
     <input type="password" name="password" id="inputPassword" v-model="password" class="form-control w-75 mx-auto" autocomplete="current-password" required>
     <div class="text-center text-danger">{{errorMessage}}</div>
     <button class="btn btn-lg btn-primary mt-3" type="submit">Se connecter</button>
-    <p class="mt-3">Pas encore inscrit? Cliquez <a href="http://localhost:8000/register">ici</a></p>
+    <p class="mt-3">Pas encore inscrit? Cliquez <a href="https://daccodac.fr/register">ici</a></p>
 </form>
 </template>
 

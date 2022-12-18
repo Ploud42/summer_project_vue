@@ -24,7 +24,7 @@
                 this.$router.push("/");
             }
             axios
-                .get('http://localhost:8000/api/runs?user=api/users/' + this.token.id,
+                .get('https://daccodac.fr/api/runs?user=api/users/' + this.token.id,
                 {
                     headers: {Authorization: 'bearer '+ this.$cookies.get("Token")}
                 })

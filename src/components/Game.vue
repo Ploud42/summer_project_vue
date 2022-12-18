@@ -16,7 +16,7 @@ export default {
       loading:true,
       message: '',
       stage: 1,
-      maxStage: 3,
+      maxStage: 2,
       monsterID: 4,
       monsterCurHp: -1,
       heroCurHp: this.character.hp,
@@ -35,7 +35,7 @@ export default {
       this.$emit('errorMessage', "Veuillez vous connecter svp");
     }
     axios
-      .get('http://localhost:8000/api/characters/'+this.monsterID)
+      .get('https://daccodac.fr/api/characters/'+this.monsterID)
       .then(response => (this.monster = response.data, this.monsterCurHp = response.data.hp))
       .finally(this.loading = false)
   },
@@ -44,7 +44,7 @@ export default {
       this.loading = true;
       this.monsterID++;
       await axios
-        .get('http://localhost:8000/api/characters/'+this.monsterID)
+        .get('https://daccodac.fr/api/characters/'+this.monsterID)
         .then(response => (this.monster = response.data, this.monsterCurHp = response.data.hp))
         .finally(this.monsterDead = false, this.loading = false)
       
@@ -95,7 +95,7 @@ export default {
     saveScore(){
       const date = this.getCurrentDate();
       axios
-        .post('http://localhost:8000/api/runs',
+        .post('https://daccodac.fr/api/runs',
         {
           date: date,
           score: this.stage.toString(),
@@ -121,7 +121,7 @@ export default {
 </script>
 
 <template>
-  <!-- <button type="button" class="btn fw-bold btn-gp" v-on:click="saveScore">Test saveScore</button> -->
+  <button type="button" class="btn fw-bold btn-gp" v-on:click="saveScore">Test saveScore</button>
   <div class="row text-center"><h1>Stage {{stage}}</h1></div>
   <div class="row align-items-end text-center ms-3 pb-5 g-bg mx-auto mb-5">
     <div class="col-4">
@@ -138,7 +138,7 @@ export default {
         </div>
         <div class="row">
           <div :class="{'animate__animated animate__flash': heroFlash}">
-            <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="img-fluid img-hero ms-4" :alt="character.name">
+            <img v-if="character.image" :src="'https://daccodac.fr/assets/images/heroesPP/' + character.image" class="img-fluid img-hero ms-4" :alt="character.name">
           </div>
         </div>
         <div class="row">
@@ -172,7 +172,7 @@ export default {
           </div>
           <div class="row">
             <div :class="{'animate__animated animate__flash': monsterFlash}">
-              <img v-if="monster.image" :src="'http://localhost:8000/assets/images/heroesPP/' + monster.image" class="img-fluid img-monster" alt="monster">
+              <img v-if="monster.image" :src="'https://daccodac.fr/assets/images/heroesPP/' + monster.image" class="img-fluid img-monster" alt="monster">
             </div>
           </div>
           <div v-if="monsterCurHp >= 0" class="row">

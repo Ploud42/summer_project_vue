@@ -48,7 +48,7 @@ export default{
                          Bonjour, {{token.pseudo}}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a v-if="token.roles.includes('ROLE_ADMIN')" class="dropdown-item" href="http://localhost:8000/admin">Admin</a></li>
+                        <li><a v-if="token.roles.includes('ROLE_ADMIN')" class="dropdown-item" href="https://daccodac.fr/admin">Admin</a></li>
                         <li><router-link to="/score" class="dropdown-item">Mes scores</router-link></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><router-link to="/" class="dropdown-item" @click="logout">Se déconnecter</router-link></li>

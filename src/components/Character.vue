@@ -23,7 +23,7 @@ export default {
   <div v-if="character.playable" class="col-12 col-md-6 col-xl-4 mx-auto">
     <div class="card h-100 border-0 rounded-0 shadow px-0">
 
-      <img v-if="character.image" :src="'http://localhost:8000/assets/images/heroesPP/' + character.image" class="card-img-top bg-dark rounded-0" alt="...">
+      <img v-if="character.image" :src="'https://daccodac.fr/assets/images/heroesPP/' + character.image" class="card-img-top bg-dark rounded-0" alt="...">
       
 
       <div class="card-body">
