@@ -1,0 +1,17 @@
+{
+    "name": "Little Game Project",
+    "background_color": "black",
+    "short_name": "Hero Game",
+    "display": "standalone",
+    "description": "Small personnal project",
+    "orientation": "portrait",
+    "start_url": "/",
+    "icons":[
+    {
+        "src":"img/icons/logoW.png",
+        "sizes":"72x72 96x96 128x128 256x256 512x512"
+    }
+    ],
+    "lang":"en",
+    "scope":"/"
+}

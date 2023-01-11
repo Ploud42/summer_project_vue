@@ -10,6 +10,7 @@ import Login from './components/Login.vue';
 import Rules from './components/Rules.vue';
 import Game from './components/Game.vue';
 import Score from './components/Score.vue';
+import About from './components/About.vue';
 
 const router = VueRouter.createRouter({
 history: VueRouter.createWebHistory(),
@@ -40,6 +41,11 @@ routes: [
         path: '/score',
         name: 'Score',
         component: Score
+    },
+    {
+        path: '/about',
+        name: 'About',
+        component: About
     }
   ]
 })
@@ -48,6 +54,8 @@ const app = createApp(App)
 app.use(VueAxios, axios)
 app.use(VueCookies)
 app.use(router).mount('#app')
+
 /* app.mount('app') */
 
 import "bootstrap/dist/js/bootstrap.js"
+

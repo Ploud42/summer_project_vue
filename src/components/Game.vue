@@ -121,7 +121,7 @@ export default {
 </script>
 
 <template>
-  <button type="button" class="btn fw-bold btn-gp" v-on:click="saveScore">Test saveScore</button>
+  <!-- <button type="button" class="btn fw-bold btn-gp" v-on:click="saveScore">Test saveScore</button> -->
   <div class="row text-center"><h1>Stage {{stage}}</h1></div>
   <div class="row align-items-end text-center ms-3 pb-5 g-bg mx-auto mb-5">
     <div class="col-4">
