@@ -43,7 +43,7 @@ export default{
                         <router-link to="/" @click="closeGame" class="nav-link">Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/About" @click="closeGame" class="nav-link">About</router-link>
+                        <router-link to="/about" @click="closeGame" class="nav-link">About</router-link>
                     </li>
                 </ul>
                 <div v-if="token.pseudo" class="nav-item dropdown">

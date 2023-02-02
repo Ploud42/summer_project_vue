@@ -34,7 +34,7 @@
     <div class="container">
         <h1 class="text-center pb-5">A propos</h1>
         <p>
-            Suite à un projet abordé lors de la formation, j'ai voulu explorer la faisabilité d'un jeu vidéo type RPG en 2D n'utilisant que des technologies web.
+            Suite à un projet abordé lors de ma formation, j'ai voulu explorer la faisabilité d'un jeu vidéo type RPG en 2D n'utilisant que des technologies web.
             Dans le but d'approfondir ma maitrise de Symfony et de Vuejs, et parce que ces frameworks présentent de réels intérêts pour mon projet, j'ai décidé de les utiliser tous les deux.
             En effet, Vuejs permet une intégration facilitée sur mobile en pseudo-application, et Symfony permet la création et gestion rapide d'une base de données, d'un CRUD, et la mise en place d'une API via API Platform.
             L'ambition est aussi de créer mes propres assets pour le jeu : Dessins / animations / décors via un site de pixelart gratuit : Pixilart. 
@@ -46,7 +46,7 @@
             Si un combat est perdu ou tous les adversaires vaincus, le score est sauvegardé en base de donnée, et l'utilisateur aura alors accès à son historique des parties dans une section “Mes scores”.
         </p>
         <p>
-            Le jeu est en Alpha et les assets sont en constante évolution/création. Des images prises sur internet font office d'exemple en attendant. Toutes ressemblances avec des faits / personnages réels ou fictifs sont une coïncidence.
+            Le jeu est en Alpha et les assets sont en constante évolution/création. Des images prises sur internet font office d'exemple en attendant. Toute ressemblance avec des faits / personnages réels ou fictifs est une coïncidence.
         </p>
     </div>
 </template>
