@@ -30,10 +30,10 @@ export default {
     }
   },
   mounted(){
-    if (!this.$cookies.get("Token")){
+/*     if (!this.$cookies.get("Token")){
       this.$emit('resetChosen');
       this.$emit('errorMessage', "Veuillez vous connecter svp");
-    }
+    } */
     axios
       .get('https://daccodac.fr/api/characters/'+this.monsterID)
       .then(response => (this.monster = response.data, this.monsterCurHp = response.data.hp))
@@ -83,8 +83,10 @@ export default {
       }
     },
     closeGame() {
+      if (this.$cookies.get("Token")){
         this.saveScore();
-        this.$emit('resetChosen');
+      }
+      this.$emit('resetChosen');
     },
     getCurrentDate(){
       const current = new Date();
@@ -123,6 +125,7 @@ export default {
 <template>
   <!-- <button type="button" class="btn fw-bold btn-gp" v-on:click="saveScore">Test saveScore</button> -->
   <div class="row text-center"><h1>Stage {{stage}}</h1></div>
+  <div class="row text-center"><p><strong>Note:</strong> Seul le bouton "Attaque" fonctionne pour le moment</p></div>
   <div class="row align-items-end text-center ms-3 pb-5 g-bg mx-auto mb-5">
     <div class="col-4">
       <div :class="{'animate__animated animate__fadeOut': heroDead }">

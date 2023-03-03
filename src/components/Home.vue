@@ -27,6 +27,9 @@
       if (this.$cookies.isKey("Token")){
         this.token = jwt_decode(this.$cookies.get("Token"));
       }
+      else {
+        this.message = "Vous connecter vous permettra de sauvegarder votre score"
+      }
     },
     methods: {
       updateChosen(char) {
@@ -61,7 +64,7 @@
     <div v-if = !chosen>
       <!-- {{$data}} -->
       <h1 class="text-center">Choisissez votre héro</h1>
-      <div v-if="message" class="row text-center"><span class="alert alert-info mx-auto">{{message}}</span></div>
+      <div v-if="message" class="row text-center"><span class="alert alert-info mx-auto">{{message}}</span></div> <!-- Dédié aux messages d'alerte -->
       <div class="row g-3">
         <Character
           v-for="result, index in results"

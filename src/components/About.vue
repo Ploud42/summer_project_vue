@@ -40,13 +40,16 @@
             L'ambition est aussi de créer mes propres assets pour le jeu : Dessins / animations / décors via un site de pixelart gratuit : Pixilart. 
         </p>
         <p>
-            Un accès admin à la partie Symfony permet d'ajouter les héros qu'incarnent les utilisateurs, ainsi que les créatures qu'ils affrontent.
-            Le site en lui-même propose de se connecter / créer un compte, afin de pouvoir sélectionner un héros. L'accès aux informations sensibles de l'API est sécurisé par l'utilisation d'un Json Web Token (JWT).
+            Un accès admin à la partie Symfony permet de créer les héros qu'incarnent les utilisateurs, ainsi que les créatures qu'ils affrontent.
+            Le site en lui-même propose de se connecter / créer un compte, afin de pouvoir enregistrer et consulter un historique des parties.
+        </p>
+        <p>
+            L'accès aux informations sensibles de l'API est sécurisé par l'utilisation d'un Json Web Token (JWT).
             Une fois le héros sélectionné, le jeu démarre et propose d'affronter des monstres de plus en plus forts. Toutes les données sont récupérées via l'API, et le jeu en lui-même est géré en Javascript.
             Si un combat est perdu ou tous les adversaires vaincus, le score est sauvegardé en base de donnée, et l'utilisateur aura alors accès à son historique des parties dans une section “Mes scores”.
         </p>
         <p>
-            Le jeu est en Alpha et les assets sont en constante évolution/création. Des images prises sur internet font office d'exemple en attendant. Toute ressemblance avec des faits / personnages réels ou fictifs est une coïncidence.
+            Le jeu est en Alpha et les assets sont en constante évolution/création. Certaines images récupérées sur internet font office d'exemple temporairement. Toute ressemblance avec des faits / personnages réels ou fictifs est une coïncidence.
         </p>
     </div>
 </template>
