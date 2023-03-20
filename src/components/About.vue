@@ -1,5 +1,6 @@
 <script> 
     import Navbar from './Navbar.vue';
+    import jwt_decode from 'jwt-decode';
 
     export default {
         name: 'About',
